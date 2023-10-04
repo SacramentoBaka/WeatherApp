@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_margin="4dp"
+    app:cardElevation="6dp"
+    app:cardCornerRadius="10dp"
+    android:background="@drawable/background_category_2">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_category_2">
+
+        <TextView
+            android:id="@+id/idCardTVTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Time"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/idCardTVTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idCardTVTime"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_category_1"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:text="20°C"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/idCardIVCondition"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/idCardTVTemperature"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:padding="4dp"
+            android:src="@drawable/cloudy" />
+
+        <TextView
+            android:id="@+id/idCardTVWindSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idCardIVCondition"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="13"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
