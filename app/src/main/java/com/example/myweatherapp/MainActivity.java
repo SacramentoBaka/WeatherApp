@@ -1,6 +1,7 @@
 package com.example.myweatherapp;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -23,8 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout homeRL;
     private ProgressBar loadingPB;
-    private TextView cityNameTv, temperatureTV, conditionTV, regionTV, timeTV, countryTV;
+    private TextView cityNameTv, temperatureTV, conditionTV, regionTV, timeTV, countryTV, wSpeedTv, feelLikeTV, textViewDay, textViewNight;
     private RecyclerView weatherRV;
     private TextInputEditText cityEdt;
     private ImageView backIV, iconIV, searchIV;
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private String cityName;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +66,13 @@ public class MainActivity extends AppCompatActivity {
         loadingPB = findViewById(R.id.progressBarLoad);
         cityNameTv = findViewById(R.id.idTVCityName);
         temperatureTV = findViewById(R.id.idTVTemperature);
+        textViewDay = findViewById(R.id.idDay);
+        textViewNight = findViewById(R.id.idNight);
         regionTV = findViewById(R.id.idTVRegion);
         countryTV = findViewById(R.id.idTVCountry);
         conditionTV = findViewById(R.id.idTVCondition);
+        wSpeedTv = findViewById(R.id.idWSpeed);
+        feelLikeTV = findViewById(R.id.idFeelTemp);
         weatherRV = findViewById(R.id.idRVWeather);
         timeTV = findViewById(R.id.idTVTime);
         cityEdt = findViewById(R.id.idEdtCity);
@@ -147,9 +151,13 @@ public class MainActivity extends AppCompatActivity {
             weatherRVModelArrayList.clear();
             try {
                 String temperature = response.getJSONObject("current").getString("temp_c");
+                String wSeep = response.getJSONObject("current").getString("wind_kph");
+                String feelLike = response.getJSONObject("current").getString("feelslike_c");
                 String region = response.getJSONObject("location").getString("region");
                 String localTime = response.getJSONObject("location").getString("localtime");
                 String country = response.getJSONObject("location").getString("country");
+                wSpeedTv.setText("wind speed \n\t"+ wSeep + " km/h");
+                feelLikeTV.setText("Feels Like \n\t\t" + feelLike + "°c");
                 regionTV.setText(region);
                 countryTV.setText(country);
                 SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd hh:mm");
@@ -162,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 // Setting Time
-                temperatureTV.setText(temperature + "°C");
+                temperatureTV.setText(temperature + "°c");
                 int isDay = response.getJSONObject("current").getInt("is_day");
                 String condition = response.getJSONObject("current").getJSONObject("condition").getString("text");
                 String conditionIcon = response.getJSONObject("current").getJSONObject("condition").getString("icon");
@@ -170,10 +178,16 @@ public class MainActivity extends AppCompatActivity {
                 conditionTV.setText(condition);
                 if (isDay == 1) {
                     //Morning
-                    Picasso.get().load("https://images.unsplash.com/photo-1484402628941-0bb40fc029e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80").into(backIV);
+                    Picasso.get().load("https://images.unsplash.com/photo-1638803539230-c3982dab6d8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2055&q=80").into(backIV);
+                    textViewDay.setVisibility(View.VISIBLE);
+                    textViewDay.setText("Day");
+                    textViewNight.setVisibility(View.GONE);
                 } else {
                     //Night
-                    Picasso.get().load("https://images.unsplash.com/photo-1590418606746-018840f9cd0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80").into(backIV);
+                    Picasso.get().load("https://images.unsplash.com/photo-1472552944129-b035e9ea3744?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80").into(backIV);
+                    textViewNight.setVisibility(View.VISIBLE);
+                    textViewNight.setText("Night");
+                    textViewDay.setVisibility(View.GONE);
                 }
 
                 JSONObject forecastObject = response.getJSONObject("forecast");

@@ -39,7 +39,7 @@ public class WeatherRVModel {
     }
 
     public String getWindSpeed() {
-        return windSpeed;
+        return "wind " + windSpeed;
     }
 
     public void setWindSpeed(String windSpeed) {

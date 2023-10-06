@@ -27,49 +27,91 @@
             android:scaleType="centerCrop"
             android:src="@drawable/background_category_2" />
 
-        <TextView
-            android:id="@+id/idTVCityName"
+        <LinearLayout
+            android:id="@+id/idLLHead"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="City Name"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:layout_margin="10dp"
+            android:background="@drawable/background_category_3"
+            android:orientation="vertical"
+            android:weightSum="5">
 
-        <TextView
-            android:id="@+id/idTVRegion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/idTVCityName"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Region"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/idDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Day"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/idNight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Night"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/idTVCountry"
-            android:layout_below="@id/idTVRegion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:text="Region"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/idTVCityName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="City Name"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/idTVRegion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Region"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/idTVCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:text="Country"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/idLLEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/idTVCountry"
+            android:layout_below="@id/idLLHead"
             android:orientation="horizontal"
             android:weightSum="5">
 
@@ -114,39 +156,74 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/idTVTemperature"
+        <LinearLayout
+            android:id="@+id/idLLTemp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idLLEdt"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:padding="5dp"
-            android:text="22°C"
-            android:textColor="@color/white"
-            android:textSize="70sp" />
+            android:layout_margin="10dp"
+            android:background="@drawable/background_category_3"
+            android:weightSum="5"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/idTVTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:paddingEnd="30dp"
-            android:layout_below="@id/idTVTemperature"
-            android:text="00:00 am"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/idWSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="10dp"
+                    android:text="wind speed"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idTVTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="22°c"
+                    android:textColor="@color/white"
+                    android:textSize="60sp" />
+
+                <TextView
+                    android:id="@+id/idFeelTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginEnd="10dp"
+                    android:text="feels like "
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/idTVTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                android:paddingEnd="30dp"
+                android:text="00:00 am"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/idIVIcon"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_below="@id/idTVTime"
+            android:layout_below="@id/idLLTemp"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -159,7 +236,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/idIVIcon"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/baloo_paaji"
@@ -167,7 +243,7 @@
             android:text="Condition"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="italic" />
 
         <TextView
@@ -179,7 +255,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Today's Weather Forecast"
+            android:text="Today's 24hr Weather Forecast"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold" />

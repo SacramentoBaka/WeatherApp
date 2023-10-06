@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:layout_margin="4dp"
     app:cardElevation="6dp"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="17dp"
     android:background="@drawable/background_category_2">
 
     <RelativeLayout
