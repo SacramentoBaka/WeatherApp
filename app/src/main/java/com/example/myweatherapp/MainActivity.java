@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout homeRL;
     private ProgressBar loadingPB;
-    private TextView cityNameTv, temperatureTV, conditionTV, regionTV, timeTV, countryTV, wSpeedTv, feelLikeTV, textViewDay, textViewNight;
+    private TextView cityNameTv, temperatureTV, conditionTV, regionTV, timeTV, countryTV, wSpeedTv, feelLikeTV, textViewDay, minTempTV, maxTempTV, textViewNight;
     private RecyclerView weatherRV;
     private TextInputEditText cityEdt;
     private ImageView backIV, iconIV, searchIV;
@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         textViewNight = findViewById(R.id.idNight);
         regionTV = findViewById(R.id.idTVRegion);
         countryTV = findViewById(R.id.idTVCountry);
+        minTempTV = findViewById(R.id.idMinTemp);
+        maxTempTV = findViewById(R.id.idMaxTemp);
         conditionTV = findViewById(R.id.idTVCondition);
         wSpeedTv = findViewById(R.id.idWSpeed);
         feelLikeTV = findViewById(R.id.idFeelTemp);
@@ -128,8 +130,6 @@ public class MainActivity extends AppCompatActivity {
                     String city = adr.getLocality();
                     if (city != null && !city.equals("")) {
                         cityName = city;
-                    } else {
-                        //Toast.makeText(this, "CITY NOT FOUND!!!...", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -156,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
                 String region = response.getJSONObject("location").getString("region");
                 String localTime = response.getJSONObject("location").getString("localtime");
                 String country = response.getJSONObject("location").getString("country");
-                wSpeedTv.setText("wind speed \n\t"+ wSeep + " km/h");
-                feelLikeTV.setText("Feels Like \n\t\t" + feelLike + "°c");
+                wSpeedTv.setText("wind speed \n" + wSeep + " km/h");
+                feelLikeTV.setText("Feels Like \n" + feelLike + "°c");
                 regionTV.setText(region);
                 countryTV.setText(country);
                 SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd hh:mm");
@@ -193,6 +193,13 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject forecastObject = response.getJSONObject("forecast");
                 JSONObject forecast = forecastObject.getJSONArray("forecastday").getJSONObject(0);
                 JSONArray hourArray = forecast.getJSONArray("hour");
+                JSONObject dayObj = forecast.getJSONObject("day");
+                String minTemp = dayObj.getString("mintemp_c");
+                String maxTemp = dayObj.getString("maxtemp_c");
+                minTempTV.setText("min\nL:" + minTemp + " °c");
+                maxTempTV.setText("max\nH:"+ maxTemp + " °c");
+
+
                 for (int i = 0; i < hourArray.length(); i++) {
                     JSONObject hourObj = hourArray.getJSONObject(i);
                     String time = hourObj.getString("time");
